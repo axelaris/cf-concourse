@@ -1,5 +1,4 @@
 #!/bin/bash
-echo "192.168.0.149 bosh.sslip.io" >>/etc/hosts
 cd cf-deployment
 git checkout v0.4.0
 bosh -n -d cf deploy \

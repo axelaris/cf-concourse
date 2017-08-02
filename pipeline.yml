@@ -18,18 +18,29 @@ resource_types:
 
 jobs:
 
-- name: deploy-cf
+- name: bosh-connect
   plan:
-  - get: cf-version
-  - get: cf-concourse
-  - get: cf-deployment
-  - task: deploy-cf
+  - task:
     config:
       platform: linux
       image_resource: &common-image-resource
         type: docker-image
         source:
           repository: smatyukevich/bosh-worker
+      run:
+        path: cf-concourse/bosh-connect.sh
+  - put: bosh-connect
+
+- name: deploy-cf
+  plan:
+  - get: cf-version
+    passed: bosh-connect
+  - get: cf-concourse
+  - get: cf-deployment
+  - task: deploy-cf
+    config:
+      platform: linux
+      image_resource: *common-image-resource
       run:
         path: cf-concourse/deploy-cf.sh
       params:
@@ -39,6 +50,7 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
         DOMAIN: {{cf-domain}}
       inputs:
+        - name: bosh-connect
         - name: cf-deployment
         - name: cf-concourse
   - put: cf-version
