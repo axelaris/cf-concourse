@@ -1,32 +1,14 @@
 resources:
-- name: cf-version
-  type: concourse-version-resource
-
 - name: cf-concourse
   type: git
   source:
     uri: https://github.com/axelaris/cf-concourse.git
 
-- name: cf-deployment
-  type: git
-  source:
-    uri: https://github.com/cloudfoundry/cf-deployment
-
-resource_types:
-- name: concourse-version-resource
-  type: docker-image
-  source:
-    repository: meteogroup/concourse-version-resource
-
 jobs:
-- name: deploy-cf
+- name: deploy-vault
   plan:
-  - get: cf-version
   - get: cf-concourse
- #   passed: 
- #   - bosh-connect
-  - get: cf-deployment
-  - task: deploy-cf
+  - task: deploy-vault
     config:
       platform: linux
       image_resource: &common-image-resource
@@ -34,14 +16,11 @@ jobs:
         source:
           repository: smatyukevich/bosh-worker
       run:
-        path: cf-concourse/deploy-cf.sh
+        path: cf-concourse/vault/deploy-vault.sh
       params:
         BOSH_CA_CERT: {{bosh-ca-cert}}
         BOSH_ENVIRONMENT: {{bosh-env}}
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
-        DOMAIN: {{cf-domain}}
       inputs:
-        - name: cf-deployment
         - name: cf-concourse
-  - put: cf-version
