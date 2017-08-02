@@ -1,5 +1,5 @@
 #!/bin/bash
-./bosh-connect.sh
+./cf-concourse/bosh-connect.sh
 cd cf-deployment
 git checkout v0.4.0
 bosh -n -d cf deploy \
