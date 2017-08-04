@@ -29,6 +29,7 @@ jobs:
   plan:
   - get: cf-concourse
     passed: [deploy-vault]
+    trigger: true
   - task: unseal-vault
     config:
       platform: linux
@@ -40,3 +41,5 @@ jobs:
         BOSH_ENVIRONMENT: {{bosh-env}}
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
+      inputs:
+        - name: cf-concourse
