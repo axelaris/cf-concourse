@@ -13,6 +13,6 @@ if [ ${SEALED} == true ]; then
   echo ${KEYS} | grep "Unseal Key 1" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
   echo ${KEYS} | grep "Unseal Key 2" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
   echo ${KEYS} | grep "Unseal Key 3" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
+  echo ${KEYS} | grep "Token" | sed s/.*Token:\ // | vault auth ${NOTLS} -
 fi
-echo ${KEYS} | grep "Token" | sed s/.*Token:\ // | vault auth ${NOTLS} -
 
