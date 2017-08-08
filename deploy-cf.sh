@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 ./cf-concourse/bosh-connect.sh
 cd cf-deployment
 git checkout v0.4.0
