@@ -41,6 +41,7 @@ jobs:
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
         DOMAIN: {{cf-domain}}
+        VAULT_ADDR: {{vault-addr}}
       inputs:
         - name: cf-deployment
         - name: cf-concourse

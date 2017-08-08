@@ -25,3 +25,4 @@ bosh-env: bosh.sslip.io
 bosh-user: admin
 bosh-pass: admin
 cf-domain: 34.231.79.134.nip.io
+vault-addr: https://10.244.0.131:8200
