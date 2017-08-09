@@ -24,6 +24,6 @@ bosh-ca-cert: |
 bosh-env: bosh.sslip.io
 bosh-user: admin
 bosh-pass: admin
-cf-domain: 34.231.79.134.nip.io
+cf-domain: 52.87.255.86.nip.io
 vault-addr: https://10.244.0.131:8200
 vault-token: 46dc3972-d1b4-9d35-7063-e35ff72627fe
