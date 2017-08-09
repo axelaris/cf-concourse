@@ -1,0 +1,15 @@
+*** cc.yml	2017-08-09 18:29:06.265819000 +0000
+***************
+*** 52,57 ****
+--- 52,62 ----
+      ports:
+      - host: 1024-1123
+    name: cf-tcp-router-network-properties
++ - name: concourse
++   cloud_properties:
++     ports:
++     - host: 8080
++     - host: 4443
+  vm_types:
+  - name: default
+  - name: m3.medium
