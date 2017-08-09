@@ -26,4 +26,4 @@ bosh-user: admin
 bosh-pass: admin
 cf-domain: 52.87.255.86.nip.io
 vault-addr: https://10.244.0.131:8200
-vault-token: 46dc3972-d1b4-9d35-7063-e35ff72627fe
+vault-token: 45a8a05f-95c0-ecd7-9207-d2b767d35c67

@@ -29,7 +29,6 @@ jobs:
   plan:
   - get: cf-concourse
     passed: [deploy-vault]
-    trigger: true
   - task: unseal-vault
     config:
       platform: linux

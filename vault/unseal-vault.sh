@@ -10,9 +10,12 @@ if [[ ${STATUS} == "* server is not yet initialized" ]]; then
 fi
 SEALED=`vault status ${NOTLS} | grep "^Sealed" | sed s/^.*:\ //`
 if [ ${SEALED} == true ]; then
+  echo --- Unseal step 1 of 3
   cat vault-keys | grep "Unseal Key 1" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
+  echo --- Unseal step 2 of 3
   cat vault-keys | grep "Unseal Key 2" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
+  echo --- Unseal step 3 of 3
   cat vault-keys | grep "Unseal Key 3" | sed s/^.*:\ // | xargs vault unseal ${NOTLS}
+  echo --- Authenticating
   cat vault-keys | grep "Token" | sed s/.*Token:\ // | vault auth ${NOTLS} -
 fi
-
