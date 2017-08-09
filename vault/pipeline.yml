@@ -14,7 +14,7 @@ jobs:
       image_resource: &common-image-resource
         type: docker-image
         source:
-          repository: smatyukevich/bosh-worker
+          repository: baber/cfbosh
       run:
         path: cf-concourse/vault/deploy-vault.sh
       params:
