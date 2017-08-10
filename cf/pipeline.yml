@@ -23,8 +23,6 @@ jobs:
   plan:
   - get: cf-version
   - get: cf-concourse
- #   passed: 
- #   - bosh-connect
   - get: cf-deployment
   - task: deploy-cf
     config:
@@ -34,13 +32,14 @@ jobs:
         source:
           repository: baber/cfbosh
       run:
-        path: cf-concourse/deploy-cf.sh
+        path: cf-concourse/cf/deploy-cf.sh
       params:
         BOSH_CA_CERT: {{bosh-ca-cert}}
         BOSH_ENVIRONMENT: {{bosh-env}}
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
         DOMAIN: {{cf-domain}}
+        CF_TAG: {{cf-tag}}
         VAULT_ADDR: {{vault-addr}}
         VAULT_TOKEN: {{vault-token}}
       inputs:
