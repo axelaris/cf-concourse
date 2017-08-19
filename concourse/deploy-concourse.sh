@@ -2,5 +2,5 @@
 ./cf-concourse/scripts/bosh-connect.sh
 cd cf-concourse/concourse
 
-bosh -d concourse deploy concourse.yml
+bosh -d concourse deploy concourse.yml --no-redact
 
