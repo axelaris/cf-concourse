@@ -1,0 +1,8 @@
+---
+- type: replace
+  path: /instance_groups/name=web/jobs/name=atc/properties/vault?
+  value:
+    path_prefix: /concourse
+    url: https://10.244.0.131:8200
+    auth:
+      client_token: 922c3a57-e6f5-0109-6b11-690a3c05f48b
