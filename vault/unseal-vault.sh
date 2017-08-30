@@ -1,5 +1,5 @@
 #!/bin/bash
-./cf-concourse/bosh-connect.sh
+./cf-concourse/scripts/bosh-connect.sh
 IP=`bosh -d vault --column=IPs --json vms | jq -r ".Tables[0].Rows[0].ips"`
 export VAULT_ADDR=https://${IP}:8200
 NOTLS="-tls-skip-verify"
