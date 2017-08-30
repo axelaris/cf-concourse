@@ -30,7 +30,7 @@ instance_groups:
     release: concourse
     properties:
       # replace with your CI's externally reachable URL, e.g. https://ci.foo.com
-      external_url: https://52.87.255.86.nip.io
+      # external_url:
 
       # replace with username/password, or configure GitHub auth
       basic_auth_username: admin
