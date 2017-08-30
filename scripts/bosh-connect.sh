@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "192.168.0.228 bosh.sslip.io" >>/etc/hosts
+echo "172.17.0.1 bosh.sslip.io" >>/etc/hosts
