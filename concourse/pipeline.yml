@@ -22,6 +22,7 @@ jobs:
 
 - name: deploy-vault
   plan:
+  - get: auto
   - get: cf-concourse
   - task: deploy-vault
     config:
@@ -61,13 +62,14 @@ jobs:
       inputs:
         - name: cf-concourse
   - put: auto
+  - put: cf-concourse
 
 - name: update-concourse
   plan:
   - get: cf-concourse
-  - get: auto
     passed: [unseal-vault]
     trigger: true
+  - get: auto
   - task: deploy-concourse
     config:
       platform: linux
