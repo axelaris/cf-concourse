@@ -20,7 +20,7 @@ resource_types:
 
 jobs:
 
-- name: deploy-vault
+- name: vault
   plan:
   - get: auto
   - get: cf-concourse
@@ -40,14 +40,6 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
-  - put: auto
-
-- name: unseal-vault
-  plan:
-  - get: cf-concourse
-  - get: auto
-    passed: [deploy-vault]
-    trigger: true
   - task: unseal-vault
     config:
       platform: linux
@@ -63,15 +55,7 @@ jobs:
         - name: cf-concourse
       outputs:
         - name: keys
-  - put: auto
-
-- name: update-concourse
-  plan:
-  - get: cf-concourse
-  - get: auto
-    passed: [unseal-vault]
-    trigger: true
-  - task: deploy-concourse
+  - task: update-concourse
     config:
       platform: linux
       image_resource: *common-image-resource
@@ -84,13 +68,14 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
+        - name: keys
   - put: auto
 
 - name: deploy-cf
   plan:
   - get: cf-concourse
   - get: auto
-    passed: [update-concourse]
+    passed: [vault]
     trigger: true
   - get: cf-deployment
   - task: deploy-cf
