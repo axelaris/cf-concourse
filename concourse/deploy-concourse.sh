@@ -1,6 +1,6 @@
 #!/bin/bash -e
 ./cf-concourse/scripts/bosh-connect.sh
-if [ -d keys ]; then
+if [ -f keys/vault_keys ]; then
   echo "=== Updating Concourse"
   ADDR=`cat keys/vault_addr`
   TOKEN=`cat keys/concourse_token`
