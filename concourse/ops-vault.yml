@@ -3,6 +3,6 @@
   path: /instance_groups/name=web/jobs/name=atc/properties/vault?
   value:
     path_prefix: /concourse
-    url: {{ VAULT_ADDR }}
+    url: ((VAULT_ADDR))
     auth:
-      client_token: {{ TOKEN }}
+      client_token: ((TOKEN))
