@@ -26,7 +26,7 @@ if [ $? == 2 ]; then
   echo --- Authenticating
   cat ${KEYS} | grep "Token" | sed s/.*Token:\ // >cf-concourse/concourse_token
   cat cf-concourse/concourse_token | vault auth ${NOTLS} -
+  ./cf-concourse/vault/integrate-concourse.sh
 else
   echo "=== Server is not sealed"
 fi
-./cf-concourse/vault/integrate-concourse.sh
