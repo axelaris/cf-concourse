@@ -61,8 +61,9 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
+      outputs:
+        - name: keys
   - put: auto
-  - put: cf-concourse
 
 - name: update-concourse
   plan:

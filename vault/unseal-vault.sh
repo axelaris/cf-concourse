@@ -3,9 +3,9 @@
 IP=`bosh -d vault --column=IPs --json vms | jq -r ".Tables[0].Rows[0].ips"`
 echo "=== We're going to work with ${IP} server"
 export VAULT_ADDR=https://${IP}:8200
-echo ${VAULT_ADDR} >cf-concourse/vault_addr
-NOTLS="-tls-skip-verify"
-KEYS=cf-concourse/vault_keys
+export KEYS=keys/vault_keys
+export NOTLS="-tls-skip-verify"
+echo ${VAULT_ADDR} >keys/vault_addr
 vault status ${NOTLS}
 if [ $? == 1 ]; then
   echo "=== Initializing vault"
