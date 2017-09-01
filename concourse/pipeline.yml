@@ -68,9 +68,9 @@ jobs:
 - name: update-concourse
   plan:
   - get: cf-concourse
+  - get: auto
     passed: [unseal-vault]
     trigger: true
-  - get: auto
   - task: deploy-concourse
     config:
       platform: linux
