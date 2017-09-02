@@ -1,4 +1,0 @@
-cf-domain: 52.87.255.86.nip.io
-cf-tag: v0.4.0
-vault-addr: ((vault-address))
-vault-token: ((vault-root-token))

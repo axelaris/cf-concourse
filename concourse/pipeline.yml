@@ -40,19 +40,17 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
+      outputs:
+        - name: keys
   - task: unseal-vault
     config:
       platform: linux
       image_resource: *common-image-resource
       run:
         path: cf-concourse/vault/unseal-vault.sh
-      params:
-        BOSH_CA_CERT: {{bosh-ca-cert}}
-        BOSH_ENVIRONMENT: {{bosh-env}}
-        BOSH_CLIENT: {{bosh-user}}
-        BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
+        - name: keys
       outputs:
         - name: keys
   - task: update-concourse
@@ -60,7 +58,7 @@ jobs:
       platform: linux
       image_resource: *common-image-resource
       run:
-        path: cf-concourse/concourse/deploy-concourse.sh
+        path: cf-concourse/concourse/update-concourse.sh
       params:
         BOSH_CA_CERT: {{bosh-ca-cert}}
         BOSH_ENVIRONMENT: {{bosh-env}}
@@ -71,7 +69,7 @@ jobs:
         - name: keys
   - put: auto
 
-- name: deploy-cf
+- name: CF
   plan:
   - get: cf-concourse
   - get: auto
@@ -92,10 +90,10 @@ jobs:
         BOSH_ENVIRONMENT: {{bosh-env}}
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
-        DOMAIN: {{cf-domain}}
-        CF_TAG: {{cf-tag}}
-        VAULT_ADDR: {{vault-addr}}
-        VAULT_TOKEN: {{vault-token}}
+        DOMAIN: ((cf-domain))
+        CF_TAG: ((cf-tag))
+        VAULT_ADDR: ((vault-address))
+        VAULT_TOKEN: ((vault-root-token))
       inputs:
         - name: cf-deployment
         - name: cf-concourse
