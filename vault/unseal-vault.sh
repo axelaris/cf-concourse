@@ -1,5 +1,6 @@
 #!/bin/bash
-export VAULT_ADDR=`cat keys/vault_addr`
+export VAULT_ADDR=`cat vault/addr`
+echo ${VAULT_ADDR} > keys/vault_addr
 export KEYS=keys/vault_keys
 export NOTLS="-tls-skip-verify"
 vault status ${NOTLS}
