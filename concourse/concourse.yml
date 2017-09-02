@@ -34,7 +34,7 @@ instance_groups:
 
       # replace with username/password, or configure GitHub auth
       basic_auth_username: admin
-      basic_auth_password: admin
+      basic_auth_password: ((UI_PASSWORD))
 
       # replace with your SSL cert and key
 #      tls_cert: REPLACE_ME
