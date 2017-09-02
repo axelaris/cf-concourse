@@ -46,6 +46,7 @@ jobs:
         BOSH_CLIENT_SECRET: {{bosh-pass}}
       inputs:
         - name: cf-concourse
+        - name: vault-boshrelease
       outputs:
         - name: keys
   - task: unseal-vault
