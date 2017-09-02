@@ -1,4 +1,4 @@
 path "secret/*" {
   policy = "read"
-  capabilities =  ["read", "list"]
+  capabilities =  ["read", "list", "update"]
 }
