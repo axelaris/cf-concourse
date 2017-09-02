@@ -48,7 +48,7 @@ jobs:
         - name: cf-concourse
         - name: vault-boshrelease
       outputs:
-        - name: keys
+        - name: vault
   - task: unseal-vault
     config:
       platform: linux
@@ -57,7 +57,7 @@ jobs:
         path: cf-concourse/vault/unseal-vault.sh
       inputs:
         - name: cf-concourse
-        - name: keys
+        - name: vault
       outputs:
         - name: keys
   - task: update-concourse
@@ -71,6 +71,7 @@ jobs:
         BOSH_ENVIRONMENT: {{bosh-env}}
         BOSH_CLIENT: {{bosh-user}}
         BOSH_CLIENT_SECRET: {{bosh-pass}}
+        CI_PASS: {{ci-pass}}
       inputs:
         - name: cf-concourse
         - name: keys
