@@ -1,0 +1,11 @@
+---
+- type: replace
+  path: /instance_groups/name=vault/azs
+  value:
+  - z1
+  - z2
+  - z3
+
+- type: replace
+  path: /instance_groups/name=vault/instances
+  value: 3

@@ -2,7 +2,7 @@ resources:
 - name: cf-concourse
   type: git
   source:
-    uri: https://github.com/axelaris/cf-concourse.git
+    uri: https://github.com/axelaris/cf-concourse
 
 - name: auto
   type: concourse-version-resource
@@ -11,6 +11,11 @@ resources:
   type: git
   source:
     uri: https://github.com/cloudfoundry/cf-deployment
+
+- name: vault-boshrelease
+  type: git
+  source:
+    uri: https://github.com/cloudfoundry-community/vault-boshrelease
 
 resource_types:
 - name: concourse-version-resource
@@ -24,6 +29,7 @@ jobs:
   plan:
   - get: auto
   - get: cf-concourse
+  - get: vault-boshrelease
   - task: deploy-vault
     config:
       platform: linux
