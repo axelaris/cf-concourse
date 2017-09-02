@@ -93,7 +93,7 @@ jobs:
         DOMAIN: ((cf-domain))
         CF_TAG: ((cf-tag))
         VAULT_ADDR: ((vault-address))
-        VAULT_TOKEN: ((vault-root-token))
+        VAULT_TOKEN: ((secret-token))
       inputs:
         - name: cf-deployment
         - name: cf-concourse
