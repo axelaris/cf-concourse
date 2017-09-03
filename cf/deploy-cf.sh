@@ -1,6 +1,7 @@
 #!/bin/bash -e
 ./cf-concourse/scripts/bosh-connect.sh
 echo ${VAULT_ADDR} vault >>/etc/hosts
+export VAULT_ADDR=https://${VAULT_ADDR}:8200
 cd cf-deployment
 git checkout ${CF_TAG}
 
