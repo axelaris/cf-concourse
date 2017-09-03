@@ -2,7 +2,7 @@
 VAULT=`cat vault/addr`
 echo ${VAULT} vault >> /etc/hosts 
 echo ${VAULT} > keys/vault_addr
-export VAULT_ADDR=${VAULT}
+export VAULT_ADDR=https://${VAULT}:8200
 export KEYS=keys/vault_keys
 vault status
 if [ $? == 1 ]; then
