@@ -1,6 +1,6 @@
 #!/bin/bash
-export VAULT_ADDR=`cat vault/addr`
-echo ${VAULT_ADDR} > keys/vault_addr
+echo `cat vault/addr` | tee -a /etc/hosts keys/vault_addr
+export VAULT_ADDR="https://vault:8200"
 export KEYS=keys/vault_keys
 vault status
 if [ $? == 1 ]; then
