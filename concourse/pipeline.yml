@@ -37,6 +37,7 @@ jobs:
         type: docker-image
         source:
           repository: baber/cfbosh
+          tag: cert
       run:
         path: cf-concourse/vault/deploy-vault.sh
       params:

@@ -4,7 +4,7 @@ cd cf-deployment
 git checkout ${CF_TAG}
 
 set +e
-vault read -tls-skip-verify -format=yaml secret/cf-deployment >deployment-vars.tmp
+vault read -format=yaml secret/cf-deployment >deployment-vars.tmp
 RES=$?
 set -e
 if [ ${RES} = 0 ]; then
@@ -21,4 +21,4 @@ bosh -n -d cf deploy \
 
 cat deployment-vars.yml | ../cf-concourse/scripts/yaml2json.py > deployment-vars.json
 echo "=== Saving deployment vars into Vault"
-vault write -tls-skip-verify secret/cf-deployment @deployment-vars.json
+vault write secret/cf-deployment @deployment-vars.json
