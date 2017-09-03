@@ -88,10 +88,7 @@ jobs:
   - task: deploy-cf
     config:
       platform: linux
-      image_resource: &common-image-resource
-        type: docker-image
-        source:
-          repository: baber/cfbosh
+      image_resource: *common-image-resource
       run:
         path: cf-concourse/cf/deploy-cf.sh
       params:
