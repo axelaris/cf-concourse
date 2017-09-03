@@ -1,7 +1,7 @@
 #!/bin/bash
 VAULT=`cat vault/addr`
 echo ${VAULT} vault >> /etc/hosts 
-#echo ${VAULT} > keys/vault_addr
+echo ${VAULT} > keys/vault_addr
 export VAULT_ADDR=${VAULT}
 export KEYS=keys/vault_keys
 vault status
