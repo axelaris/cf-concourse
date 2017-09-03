@@ -5,7 +5,7 @@ vault token-create --policy=policy-concourse -period="600h" -format=json | jq -r
 vault policy-write policy-secret cf-concourse/vault/policy-secret.hcl
 vault token-create --policy=policy-secret -period="600h" -format=json | jq -r ".auth.client_token" >keys/secret_token
 vault write concourse/main/secret-token value=`cat keys/secret_token`
-vault write concourse/main/vault-address value=${VAULT_ADDR}
+vault write concourse/main/vault-address value=`cat keys/vault_addr`
 vault write concourse/main/cf-tag value=v0.4.0
 # This is for BOSH Lite only
 DOMAIN=`curl -s ipinfo.io/ip`.nip.io
