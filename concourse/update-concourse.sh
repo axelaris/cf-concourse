@@ -5,7 +5,7 @@ if [ -f keys/vault_keys ]; then
   ADDR=`cat keys/vault_addr`
   TOKEN=`cat keys/concourse_token`
   cd cf-concourse/concourse
-  bosh -n -d concourse deploy -o ops-vault.yml -v VAULT_ADDR=${ADDR} -v TOKEN=${TOKEN} -v UI_PASSWORD=${CI_PASS} concourse.yml
+  bosh -n -d concourse deploy -o ops-vault.yml -v VAULT_ADDR=https://${ADDR}:8200 -v TOKEN=${TOKEN} -v UI_PASSWORD=${CI_PASS} concourse.yml
 else 
   echo "=== No keys found. Skipping update"
 fi

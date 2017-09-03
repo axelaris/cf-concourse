@@ -1,5 +1,6 @@
 #!/bin/bash
-echo `cat vault/addr` | tee -a /etc/hosts keys/vault_addr
+echo `cat vault/addr` vault >> /etc/hosts 
+echo `cat vault/addr` > keys/vault_addr
 export VAULT_ADDR="https://vault:8200"
 export KEYS=keys/vault_keys
 vault status
