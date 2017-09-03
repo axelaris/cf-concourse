@@ -1,5 +1,6 @@
 #!/bin/bash -e
 ./cf-concourse/scripts/bosh-connect.sh
+echo ${VAULT_ADDR} vault >>/etc/hosts
 cd cf-deployment
 git checkout ${CF_TAG}
 
